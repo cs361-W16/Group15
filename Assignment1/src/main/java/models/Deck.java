@@ -54,4 +54,13 @@ public class Deck {
     public int getCardsRemaining() {
         return deckIndex + 1;
     }
+
+    public void shuffleDeck() {
+        for(int i=0; i<=deckIndex; i++) {
+            int r = i + (int) (Math.random() * (52-i));
+            Card temp = deck[r];
+            deck[r] = deck[i];
+            deck[i] = temp;
+        }
+    }
 }
