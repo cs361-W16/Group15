@@ -94,6 +94,15 @@ public class ApiControllerDocTesterTest extends NinjaDocTester {
         System.out.print("\n");
     }
 
+    @Test
+    public void testPlayButton() {
+        Response response = makeRequest(
+                Request.GET().url(
+                        testServerUrl().path(URL_INDEX)));
+
+        assertThat(response.payload, containsString("playButton"));
+    }
+
 
 
 
