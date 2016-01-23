@@ -160,20 +160,18 @@
     *****************************************************************************/
     function deal() {
 
-        // Debugging
-        console.log("button");
+        deck.action = "deal";
+        console.log(deck.action);
 
         $.ajax({
             url: "deck.json",
             method: "POST",
-            data: {
-                deck: deck,
-                action: "deal"
-            }
+            data: JSON.stringify(deck)
         })
         .done(function(result) {
             // Debugging
             console.log(result);
+            deck = result.deck
         })
         .fail(function(result) {
             // Debugging

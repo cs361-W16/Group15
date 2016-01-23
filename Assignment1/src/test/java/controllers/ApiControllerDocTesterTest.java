@@ -95,6 +95,13 @@ public class ApiControllerDocTesterTest extends NinjaDocTester {
     }
 
     @Test
+    public void testDrawCard() {
+        Deck deck = new Deck();
+        deck.drawCard();
+        assertEquals(51, deck.getCardsRemaining()); 
+    }
+
+    @Test
     public void testPlayButton() {
         Response response = makeRequest(
                 Request.GET().url(

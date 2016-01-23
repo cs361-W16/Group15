@@ -43,6 +43,20 @@ public class ApplicationController {
     }
 
     public Result JsonDeckPost(Context context, Deck deck) {
+
+        // if (deck.action == "deal") {
+        //     // Basic functionality for now
+        //     // Card[] dealt_cards = new Card[4];
+
+        //     // for (int i = 0; i < 4; i++) {
+        //     //     dealt_cards[i] = deck.drawCard();
+        //     // }
+        // }
+        // else {
+        //     return Results.json().render("poop");
+        // }
+
+
         
         return Results.json().render(deck);
     }
