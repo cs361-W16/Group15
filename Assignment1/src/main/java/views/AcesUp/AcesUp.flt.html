@@ -88,22 +88,35 @@
     </tr>
 </table>
 
-<p id="deck"></p>
+<p id="deck">asdfas</p>
 
 <button id="dealButton">Deal</button>
-<button id="showDeck" action="showDeck()">Button</button>
+<button id="showDeck" onclick="showDeck()">Button</button>
 
 
 
 <script>
+
+    function display(deck) {
+        $("#deck").html("");
+        $.each(deck, function(index, card) {
+            $("#deck").append(card.rank + "<br>");
+        });
+    }
+
     function showDeck() {
+        
         $.ajax({
             url: "deck.json",
             method: "GET",
             success: function(result) {
+                // Debugging
                 console.log(result);
+
+                display(result);
             }
         });
+    }
 
 </script>
 
