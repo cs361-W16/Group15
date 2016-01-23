@@ -31,7 +31,7 @@ public class Routes implements ApplicationRoutes {
 //        router.GET().route("/hello_world.json").with(ApplicationController.class, "helloWorldJson");
         router.GET().route("/AcesUp").with(ApplicationController.class, "acesUp");
         router.GET().route("/deck.json").with(ApplicationController.class, "JsonDeckGet");
-        // router.POST().route("/deck.json").with(ApplicationController.class, "JsonDeckPost");
+        router.POST().route("/deck.json").with(ApplicationController.class, "JsonDeckPost");
 
 
         ///////////////////////////////////////////////////////////////////////

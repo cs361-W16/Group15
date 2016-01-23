@@ -18,6 +18,7 @@ package controllers;
 
 import ninja.Result;
 import ninja.Results;
+import ninja.Context;
 import models.Deck;
 import models.Card;
 
@@ -41,10 +42,8 @@ public class ApplicationController {
         return Results.json().render(deck.deck);
     }
 
-    // public Result JsonDeckPost(Context context, ) {
-    //     // Take away card
-    //     if ()
+    public Result JsonDeckPost(Context context, Deck deck) {
         
-    //     return Results.json().render(deck.deck)
-    // }
+        return Results.json().render(deck);
+    }
 }

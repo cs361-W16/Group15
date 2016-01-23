@@ -11,6 +11,7 @@ public class Deck {
 
     private static final int NUM_CARDS = 52;
     public Card[] deck = new Card[NUM_CARDS];
+    public String action;
     private int deckIndex = 51;
 
     String[] ranks = {"Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"};
