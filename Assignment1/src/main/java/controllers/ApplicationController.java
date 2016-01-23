@@ -18,9 +18,16 @@ package controllers;
 
 import ninja.Result;
 import ninja.Results;
+<<<<<<< HEAD
 import ninja.Context;
 import models.Deck;
 import models.Card;
+=======
+import models.Board;
+import models.Card;
+import models.Deck;
+
+>>>>>>> master
 
 import com.google.inject.Singleton;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -30,13 +37,18 @@ import java.io.IOException;
 @Singleton
 public class ApplicationController {
 
+    public Board AcesUp;
+
     public Result index() {
+
         return Results.html();
     }
 
     public Result acesUp() {
+        AcesUp = new Board();
         return Results.html().template("views/AcesUp/AcesUp.flt.html");
     }
+
 
     public Result JsonDeckGet() {
         Deck deck = new Deck();
@@ -69,4 +81,5 @@ public class ApplicationController {
         }
 
     }
+
 }

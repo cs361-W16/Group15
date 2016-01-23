@@ -29,6 +29,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 import models.Deck;
+import models.Board;
 
 import java.util.ArrayList;
 
@@ -108,6 +109,18 @@ public class ApiControllerDocTesterTest extends NinjaDocTester {
                         testServerUrl().path(URL_INDEX)));
 
         assertThat(response.payload, containsString("playButton"));
+    }
+
+    @Test
+    public void testBoardDeck() {
+        Board Game = new Board();
+        assertNotNull(Game.AcesUpDeck);
+    }
+
+    @Test
+    public void testBoardColumns() {
+        Board game = new Board();
+        assertNotNull(game.Columns);
     }
 
 
