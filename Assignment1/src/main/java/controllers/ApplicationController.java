@@ -18,6 +18,10 @@ package controllers;
 
 import ninja.Result;
 import ninja.Results;
+import models.Board;
+import models.Card;
+import models.Deck;
+
 
 import com.google.inject.Singleton;
 
@@ -25,12 +29,22 @@ import com.google.inject.Singleton;
 @Singleton
 public class ApplicationController {
 
+    public Board AcesUp;
+
     public Result index() {
+
         return Results.html();
     }
 
     public Result acesUp() {
+        AcesUp = new Board();
         return Results.html().template("views/AcesUp/AcesUp.flt.html");
     }
+
+    public Result ButtonPress() {
+        AcesUp.DealFour();
+        return Results.json().render(AcesUp.getColumns());
+    }
+
 
 }
