@@ -23,6 +23,8 @@ import models.Deck;
 import models.Card;
 
 import com.google.inject.Singleton;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.IOException;
 
 
 @Singleton
@@ -42,22 +44,29 @@ public class ApplicationController {
         return Results.json().render(deck.deck);
     }
 
-    public Result JsonDeckPost(Context context, Deck deck) {
+    public Result JsonDeckPost(Context context, String json) {
 
-        // if (deck.action == "deal") {
-        //     // Basic functionality for now
-        //     // Card[] dealt_cards = new Card[4];
+        try {
+            Deck deck = new ObjectMapper().readValue(json, Deck.class);
 
-        //     // for (int i = 0; i < 4; i++) {
-        //     //     dealt_cards[i] = deck.drawCard();
-        //     // }
-        // }
-        // else {
-        //     return Results.json().render("poop");
-        // }
+            if (deck.action == "deal") {
+            // Basic functionality for now
+            // Card[] dealt_cards = new Card[4];
 
+            // for (int i = 0; i < 4; i++) {
+            //     dealt_cards[i] = deck.drawCard();
+            // }
 
-        
-        return Results.json().render(deck);
+                return Results.json().render(deck);
+            }
+            else {
+                return Results.json().render("poop");
+            }
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+            return Results.json().render("exception");
+        }
+
     }
 }

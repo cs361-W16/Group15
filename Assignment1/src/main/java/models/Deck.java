@@ -2,12 +2,13 @@ package models;
 
 import java.util.ArrayList;
 import models.Card;
+import java.io.Serializable;
 
 /**
  * Created by nic on 1/20/16.
  */
 
-public class Deck {
+public class Deck implements Serializable {
 
     private static final int NUM_CARDS = 52;
     public Card[] deck = new Card[NUM_CARDS];

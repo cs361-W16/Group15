@@ -161,12 +161,16 @@
     function deal() {
 
         deck.action = "deal";
-        console.log(deck.action);
+        json_deck = JSON.stringify(deck);
+        console.log(json_deck);
 
         $.ajax({
             url: "deck.json",
             method: "POST",
-            data: JSON.stringify(deck)
+            data: {
+                deck: json_deck,
+                action: "deal"
+            }
         })
         .done(function(result) {
             // Debugging
