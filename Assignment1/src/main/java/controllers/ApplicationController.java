@@ -18,6 +18,8 @@ package controllers;
 
 import ninja.Result;
 import ninja.Results;
+import models.Deck;
+import models.Card;
 
 import com.google.inject.Singleton;
 
@@ -33,4 +35,16 @@ public class ApplicationController {
         return Results.html().template("views/AcesUp/AcesUp.flt.html");
     }
 
+    public Result JsonDeckGet() {
+        Deck deck = new Deck();
+
+        return Results.json().render(deck.deck);
+    }
+
+    // public Result JsonDeckPost(Context context, ) {
+    //     // Take away card
+    //     if ()
+        
+    //     return Results.json().render(deck.deck)
+    // }
 }

@@ -88,7 +88,24 @@
     </tr>
 </table>
 
+<p id="deck"></p>
+
 <button id="dealButton">Deal</button>
+<button id="showDeck" action="showDeck()">Button</button>
+
+
+
+<script>
+    function showDeck() {
+        $.ajax({
+            url: "deck.json",
+            method: "GET",
+            success: function(result) {
+                console.log(result);
+            }
+        });
+
+</script>
 
 
 </body>
