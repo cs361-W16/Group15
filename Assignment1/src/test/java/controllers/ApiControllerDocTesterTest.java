@@ -123,7 +123,8 @@ public class ApiControllerDocTesterTest extends NinjaDocTester {
         Deck deck = new Deck();
         Card card = deck.drawCard();
 
-        assertNotNull(card);
+        assertTrue(card.getValue() > 0 && card.getValue() < 14);
+        assertTrue(card.getSuit().length() > 0); // Assert suit string not empty
     }
 
     @Test
