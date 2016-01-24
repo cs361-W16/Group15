@@ -126,7 +126,7 @@
 
             for (j = 0; j < 14; j++) {
                 // Set $card to current board position
-                $card = board.columns[i][j];
+                $card = board.columns[i].deck[j];
 
                 if ($card != null) {
                     $this.find("td.l" + j).html($card.rank + "\n" + $card.suit);
