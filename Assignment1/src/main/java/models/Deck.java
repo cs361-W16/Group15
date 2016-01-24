@@ -82,6 +82,11 @@ public class Deck {
         return deckIndex + 1;
     }
 
+    // Returns current score
+    public int getScore(){ return (NUM_CARDS - 1) - deckIndex; }
+
+    public int getSize(){ return NUM_CARDS; }
+
     public void shuffleDeck() {
         for(int i=0; i<=deckIndex; i++) {
             int r = i + (int) (Math.random() * (52-i));

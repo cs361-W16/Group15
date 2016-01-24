@@ -1,7 +1,19 @@
 <h1>Aces Up</h1>
+<span>Score: <span id="gameScore"></span></span>
 
 <link href="/assets/css/AcesUp.css" rel="stylesheet">
 <script type="text/javascript" src="/assets/webjars/jquery/2.1.3/jquery.js"></script>
+
+<script type="text/javascript">
+    function updateScore(newScore){
+        $('#gameScore').text(newScore);
+    }
+
+    // Replace this with full game state object
+    $.getJSON("http://localhost:8080/getScore", function(result){
+        updateScore(result);
+    });
+</script>
 
 <body>
 
