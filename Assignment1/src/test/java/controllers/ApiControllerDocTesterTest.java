@@ -132,7 +132,11 @@ public class ApiControllerDocTesterTest extends NinjaDocTester {
         assertNotNull(game.columns);
     }
 
-    
 
-   
-}
+    @Test
+    public void testColumns() {
+        Board game = new Board();
+        game.dealFour();
+        game.printColumns();
+    }
+
