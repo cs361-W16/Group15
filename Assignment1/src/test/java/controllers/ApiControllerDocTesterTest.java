@@ -95,11 +95,6 @@ public class ApiControllerDocTesterTest extends NinjaDocTester {
     public void testDeckShuffle() {
         Deck deck = new Deck();
         deck.shuffleDeck();
-        for(int i = 0; i<52; i++) {
-            Card card = deck.drawCard();
-            System.out.print(card.getRank() + " " + card.getSuit() + " " + card.getColor() + "\n");
-        }
-        System.out.print("\n");
 
         assertEquals(52, deck.getCardsRemaining());
     }

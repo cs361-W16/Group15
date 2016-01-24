@@ -3,7 +3,7 @@ package models;
 import java.util.ArrayList;
 import models.Card;
 import java.io.Serializable;
-
+import java.util.Collections;
 
 /**
  * Created by nic on 1/20/16.
@@ -82,15 +82,6 @@ public class Deck implements Serializable {
 
 
     public void shuffleDeck() {
-        int deckIndex = getCardsRemaining() - 1;
-        
-        for(int i=0; i<=deckIndex; i++) {
-
-            int r = i + (int) (Math.random() * (52-i));
-
-            Card temp = deck.get(r);
-            deck.set(r, deck.get(i));
-            deck.set(i, temp);
-        }
+        Collections.shuffle(deck);
     }
 }

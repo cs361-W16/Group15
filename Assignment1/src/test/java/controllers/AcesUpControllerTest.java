@@ -50,6 +50,18 @@ public class AcesUpControllerTest extends NinjaTest {
         catch (IOException e) {
             e.printStackTrace();
         }
+
+
+        // Repeat to see if it calculates correctly
+        response = ninjaTestBrowser.postJson(URL_ACES_UP, board);
+
+        try {
+            Board resultBoard = new ObjectMapper().readValue(response, Board.class);
+            assertEquals(44, resultBoard.remaining_deck.getCardsRemaining());
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }
