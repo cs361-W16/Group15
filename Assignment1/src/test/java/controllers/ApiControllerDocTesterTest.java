@@ -149,17 +149,9 @@ public class ApiControllerDocTesterTest extends NinjaDocTester {
 
 
     @Test
-    public void testDealFour() {
+    public void testColumns() {
         Board game = new Board();
-
         game.dealFour();
-
-        // For each column
-        for(int i = 0; i < game.columns.size(); i++){
-            Deck column = game.columns.get(i);
-
-            // Ensure column has 1 card
-            assertTrue(column.deck.size() == 1);
-        }
+        game.printColumns();
     }
 }
