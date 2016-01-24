@@ -161,14 +161,18 @@
     *****************************************************************************/
     function deal() {
 
+        console.log("----------New--------")
+        console.log(board.remaining_deck);
+
         $.ajax({
             url: "deck.json",
             method: "POST",
-            data: board
+            data: JSON.stringify(board),
         })
         .done(function(result) {
             board = result
-            console.log("Cards: " + board.remaining_deck.cardsRemaining);
+            console.log(board.remaining_deck);
+            console.log("___________________")
         })
         .fail(function(result) {
             // Debugging

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import models.Card;
 import java.io.Serializable;
 
+
 /**
  * Created by nic on 1/20/16.
  */
@@ -11,7 +12,7 @@ import java.io.Serializable;
 public class Deck implements Serializable {
 
     private static final int NUM_CARDS = 52;
-    public Card[] deck = new Card[NUM_CARDS];
+    public ArrayList<Card> deck = new ArrayList<Card>(NUM_CARDS);
     private int top = 1;
 
     String[] ranks = {"Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"};
@@ -36,39 +37,35 @@ public class Deck implements Serializable {
                 newColor = "Black";
             }
 
-            deck[i] = new Card((i % 13), ranks[i % 13], suits[suitsIdx], newColor);
+            deck.add(i, new Card((i % 13), ranks[i % 13], suits[suitsIdx], newColor));
         }
     }
 
     // Pop card off deck
     public Card drawCard(){
-        int deckIndex = getCardsRemaining() - 1;
-        // Find the first card that isn't null (aka top card)
-        if(deckIndex >= 0){
-            while (deck[deckIndex] == null) {
-                deckIndex--;
-            }
-            Card card = deck[deckIndex];
-            deck[deckIndex] = null; // "Pop" card off
+        int deckIndex = deck.size() - 1;
 
-            return card;
-        }else{
-            return null;
-        }
+        // Get the top card
+        Card card = deck.get(deckIndex);
+
+        deck.remove(deckIndex);
+        
+        return card;
+
     }
 
     public void AddtoDeck(Card card) {
         int deckIndex = getCardsRemaining() - 1;
 
         if(top < deckIndex) {
-            deck[top - 1] = card;
+            deck.add(top - 1, card);
             top++;
         }
     }
 
     public Card GetTop(){
         if(top > 0) {
-            Card card = deck[top];
+            Card card = deck.get(top);
             top--;
             return card;
         }
@@ -79,14 +76,8 @@ public class Deck implements Serializable {
 
     // Returns number of cards left in deck
     public int getCardsRemaining() {
-        int count = 0;
-
-        for(int i = (NUM_CARDS - 1); i >= 0; i--){
-            if(deck[i] != null){
-                count++;
-            }
-        }
-        return count;
+        
+        return deck.size();
     }
 
     public void shuffleDeck() {
@@ -94,9 +85,9 @@ public class Deck implements Serializable {
         
         for(int i=0; i<=deckIndex; i++) {
             int r = i + (int) (Math.random() * (52-i));
-            Card temp = deck[r];
-            deck[r] = deck[i];
-            deck[i] = temp;
+            Card temp = deck.get(r);
+            deck.add(r, deck.get(i));
+            deck.add(i, temp);
         }
     }
 }
