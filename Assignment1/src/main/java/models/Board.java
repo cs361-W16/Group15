@@ -20,7 +20,7 @@ public class Board {
             }
         }
         remaining_deck = new Deck();
-        discard_pile = new Deck();
+        discard_pile = new Deck("empty");
     }
 
     public void dealFour() {
@@ -31,6 +31,17 @@ public class Board {
             }
             columns[i][j] = remaining_deck.drawCard();
             j=0;
+        }
+    }
+
+    // DEBUG
+    public Card _get(String arg, int idx){
+        if(arg.equals("remaining")){
+            return this.remaining_deck._get(idx);
+        }else if(arg.equals("discard")){
+            return this.discard_pile._get(idx);
+        }else{
+            return null;
         }
     }
 
@@ -47,5 +58,4 @@ public class Board {
             j=0;
         }
     }
-
 }
