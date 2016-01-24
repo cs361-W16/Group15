@@ -105,8 +105,10 @@
     *****************************************************************************/
 
     // Global variables to track state
-    var deck;
-    var discard_pile;
+    var board = {};
+    board.deck = [];
+    board.discard_pile = []
+
 
     /*****************************************************************************
     *        Name: display
@@ -141,7 +143,7 @@
                 console.log(result);
 
                 // Store deck state in global variable
-                deck = result;
+                board.deck = result;
         })
         .fail(function(result) {
             // Debugging
@@ -160,17 +162,12 @@
     *****************************************************************************/
     function deal() {
 
-        deck.action = "deal";
-        json_deck = JSON.stringify(deck);
-        console.log(json_deck);
+        console.log(board.deck);
 
         $.ajax({
             url: "deck.json",
             method: "POST",
-            data: {
-                deck: json_deck,
-                action: "deal"
-            }
+            data: board.deck
         })
         .done(function(result) {
             // Debugging

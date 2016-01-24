@@ -38,7 +38,6 @@ public class AcesUpControllerTest extends NinjaTest {
     @Test
     public void testPostDeck() {
         Deck deck = new Deck();
-        deck.action = "deal";
 
         String response = ninjaTestBrowser.postJson(URL_ACES_UP, deck);
 

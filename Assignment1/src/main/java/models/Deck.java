@@ -12,7 +12,6 @@ public class Deck implements Serializable {
 
     private static final int NUM_CARDS = 52;
     public Card[] deck = new Card[NUM_CARDS];
-    public String action;
     private int deckIndex = 51;
     private int top = 1;
 

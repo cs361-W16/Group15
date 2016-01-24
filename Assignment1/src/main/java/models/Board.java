@@ -6,6 +6,7 @@ package models;
 public class Board {
     public Deck[] Columns;
     public Deck AcesUpDeck;
+    public Deck DiscardPile;
 
     public Board() {
         Columns = new Deck[4];

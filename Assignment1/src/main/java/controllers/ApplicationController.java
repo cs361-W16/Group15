@@ -18,16 +18,12 @@ package controllers;
 
 import ninja.Result;
 import ninja.Results;
-<<<<<<< HEAD
 import ninja.Context;
-import models.Deck;
-import models.Card;
-=======
 import models.Board;
 import models.Card;
 import models.Deck;
 
->>>>>>> master
+
 
 import com.google.inject.Singleton;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -56,29 +52,19 @@ public class ApplicationController {
         return Results.json().render(deck.deck);
     }
 
-    public Result JsonDeckPost(Context context, String json) {
+    public Result JsonDeckPost(Context context, Deck deck) {
 
-        try {
-            Deck deck = new ObjectMapper().readValue(json, Deck.class);
+    
+        // Basic functionality for now
+        // Card[] dealt_cards = new Card[4];
 
-            if (deck.action == "deal") {
-            // Basic functionality for now
-            // Card[] dealt_cards = new Card[4];
+        // for (int i = 0; i < 4; i++) {
+        //     dealt_cards[i] = deck.drawCard();
+        // }
 
-            // for (int i = 0; i < 4; i++) {
-            //     dealt_cards[i] = deck.drawCard();
-            // }
-
-                return Results.json().render(deck);
-            }
-            else {
-                return Results.json().render("poop");
-            }
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-            return Results.json().render("exception");
-        }
+        return Results.json().render(deck);
+       
+      
 
     }
 
