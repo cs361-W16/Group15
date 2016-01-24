@@ -18,6 +18,7 @@ public class Deck implements Serializable {
     String[] ranks = {"Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"};
     String[] suits = {"Clubs", "Diamonds", "Hearts", "Spades"};
 
+    // Full deck
     public Deck(){
         // Setup deck with 52 cards
         int suitsIdx = 0;
@@ -39,6 +40,24 @@ public class Deck implements Serializable {
 
             deck.add(i, new Card((i % 13), ranks[i % 13], suits[suitsIdx], newColor));
         }
+    }
+
+    // Empty deck
+    public Deck(String arg){
+        if (arg.equals("empty")) {
+            this.top = 0;
+        }
+    }
+
+    // Copy constructor
+    public Deck(Deck input){
+        // Arraylist deep copy, since Java wants to copy references by default
+        for(int i = 0; i < 52; i++){
+            if(input.deck.get(i) != null){
+                this.deck.add(input.deck.get(i));
+            }
+        }
+        this.top = input.top;
     }
 
     // Pop card off deck
@@ -83,5 +102,10 @@ public class Deck implements Serializable {
 
     public void shuffleDeck() {
         Collections.shuffle(deck);
+    }
+
+    // DEBUG
+    public Card _get(int idx){
+        return deck.get(idx);
     }
 }
