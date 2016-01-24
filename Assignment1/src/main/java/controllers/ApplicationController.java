@@ -56,7 +56,7 @@ public class ApplicationController {
     public Result JsonDeckPost(Context context, Board board) {
 
         // Debugging
-        System.out.print("Size: " + board.remaining_deck.deck.size() + "\n\n");
+        System.out.print("Received Size: " + board.remaining_deck.deck.size() + "\n\n");
 
         // Basic functionality for now
         board.dealFour();
@@ -65,7 +65,7 @@ public class ApplicationController {
 
 
         // Debugging
-        System.out.print("\n\nSize: " + board.remaining_deck.deck.size() + "\n\n--------------------------\n\n");
+        System.out.print("\n\nSending Size: " + board.remaining_deck.deck.size() + "\n\n--------------------------\n\n");
 
 
         return Results.json().render(board);
