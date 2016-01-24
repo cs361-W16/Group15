@@ -1,28 +1,31 @@
 package models;
 
+import models.Deck;
+import java.util.ArrayList;
+import models.Card;
+
 /**
  * Created by Daniel on 1/22/2016.
  */
 public class Board {
-    public Deck[] Columns;
-    public Deck AcesUpDeck;
+    public Deck[] columns;
+    public Deck remaining_deck;
+    public Deck discard_pile;
 
     public Board() {
-        Columns = new Deck[4];
-        for(int i=0; i<4; i++) {
-            Columns[i] = new Deck(14);
-        }
-        AcesUpDeck = new Deck();
+        columns = new Deck[4];
+        remaining_deck = new Deck();
+        discard_pile = new Deck();
     }
 
-    public void DealFour() {
+    public void dealFour() {
         for(int i=0; i<4; i++) {
-            Columns[i].AddtoDeck(AcesUpDeck.drawCard());
+            columns[i].AddtoDeck(remaining_deck.drawCard());
         }
     }
 
     public Deck[] getColumns() {
-        return Columns;
+        return columns;
     }
 
 }

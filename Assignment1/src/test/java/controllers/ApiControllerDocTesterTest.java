@@ -85,6 +85,13 @@ public class ApiControllerDocTesterTest extends NinjaDocTester {
     }
 
     @Test
+    public void testDeckGetCardsRemaining() {
+        Deck deck = new Deck();
+
+        assertEquals(52, deck.getCardsRemaining());
+    }
+
+    @Test
     public void testDeckShuffle() {
         Deck deck = new Deck();
         deck.shuffleDeck();
@@ -93,6 +100,13 @@ public class ApiControllerDocTesterTest extends NinjaDocTester {
             System.out.print(card.getRank() + " " + card.getSuit() + " " + card.getColor() + "\n");
         }
         System.out.print("\n");
+    }
+
+    @Test
+    public void testDrawCard() {
+        Deck deck = new Deck();
+        Card card = deck.drawCard();
+        System.out.print(card.getValue());
     }
 
     @Test
@@ -107,13 +121,13 @@ public class ApiControllerDocTesterTest extends NinjaDocTester {
     @Test
     public void testBoardDeck() {
         Board Game = new Board();
-        assertNotNull(Game.AcesUpDeck);
+        assertNotNull(Game.remaining_deck);
     }
 
     @Test
     public void testBoardColumns() {
         Board game = new Board();
-        assertNotNull(game.Columns);
+        assertNotNull(game.columns);
     }
 
     @Test // Test starting game score

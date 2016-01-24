@@ -18,12 +18,16 @@ package controllers;
 
 import ninja.Result;
 import ninja.Results;
+import ninja.Context;
 import models.Board;
 import models.Card;
 import models.Deck;
 
 
+
 import com.google.inject.Singleton;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.IOException;
 
 
 @Singleton
@@ -41,12 +45,38 @@ public class ApplicationController {
         return Results.html().template("views/AcesUp/AcesUp.flt.html");
     }
 
-    public Result ButtonPress() {
-        AcesUp.DealFour();
-        return Results.json().render(AcesUp.getColumns());
+
+    public Result JsonDeckGet() {
+        Board board = new Board();
+
+        return Results.json().render(board);
     }
+
 
     public Result getScore(){
         return Results.json().render(deck.getScore());
+    }
+
+    public Result JsonDeckPost(Context context, Board board) {
+
+        // Debugging
+        System.out.print("getCardsRemaining: " + board.remaining_deck.getCardsRemaining() + "\n");
+        System.out.print("Size: " + board.remaining_deck.deck.size() + "\n\n");
+     
+    
+        // Basic functionality for now
+        board.remaining_deck.drawCard();
+        board.remaining_deck.drawCard();
+        board.remaining_deck.drawCard();
+        board.remaining_deck.drawCard();
+
+        System.out.print("getCardsRemaining: " + board.remaining_deck.getCardsRemaining() + "\n");
+        System.out.print("Size: " + board.remaining_deck.deck.size() + "\n\n");
+
+
+        return Results.json().render(board);
+       
+      
+
     }
 }

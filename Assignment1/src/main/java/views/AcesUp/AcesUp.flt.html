@@ -100,7 +100,109 @@
     </tr>
 </table>
 
-<button id="dealButton">Deal</button>
+<p id="cards">asdfas</p>
+
+<button id="dealButton" onclick="deal()">Deal</button>
+
+
+
+
+<script>
+
+    /*****************************************************************************
+    *        Name: 
+    *      Inputs: 
+    *     Outputs: 
+    * Description: 
+    *              
+    *****************************************************************************/
+
+    // Global variables to track state
+    board = {};
+
+
+    /*****************************************************************************
+    *        Name: display
+    *      Inputs: Card[] cards
+    *     Outputs: 
+    * Description: Prints the rank and suit of each card in the array
+    *              
+    *****************************************************************************/
+    function display(cards) {
+        $("#cards").html("");
+        $.each(cards, function(index, card) {
+            $("#cards").append(card.rank + "<br>");
+        });
+    }
+
+
+    /*****************************************************************************
+    *        Name: getInitialBoard
+    *      Inputs: 
+    *     Outputs: 
+    * Description: AJAX request to the controller to generate a board and store in
+    *              the view
+    *****************************************************************************/
+    function getInitialBoard() {
+        
+        $.ajax({
+            url: "deck.json",
+            method: "GET",
+        })
+        .done(function(result) {
+                // Debugging
+                console.log(result);
+
+                // Store deck state in global variable
+                board = result;
+        })
+        .fail(function(result) {
+            // Debugging
+            console.log(result);
+        });
+    }
+
+
+
+    /*****************************************************************************
+    *        Name: deal
+    *      Inputs: 
+    *     Outputs: 
+    * Description: AJAX request to the controller to get the next 4 cards based
+    *              on the deck state
+    *****************************************************************************/
+    function deal() {
+
+        console.log("----------New--------")
+        console.log(board.remaining_deck);
+
+        $.ajax({
+            url: "deck.json",
+            method: "POST",
+            data: JSON.stringify(board),
+            cache: false
+        })
+        .done(function(result) {
+            board = result
+            
+            // Debugging
+            console.log(board.remaining_deck);
+            console.log("___________________")
+        })
+        .fail(function(result) {
+            // Debugging
+            console.log(result);
+        });
+
+    }
+
+
+
+
+    // Store deck
+    getInitialBoard();
+
+</script>
 
 
 
