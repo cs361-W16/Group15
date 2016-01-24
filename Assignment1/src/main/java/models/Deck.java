@@ -80,10 +80,6 @@ public class Deck implements Serializable {
         return deck.size();
     }
 
-    // Returns current score
-    public int getScore(){ return (NUM_CARDS - 1) - getCardsRemaining(); }
-
-    public int getSize(){ return NUM_CARDS; }
 
     public void shuffleDeck() {
         int deckIndex = getCardsRemaining() - 1;

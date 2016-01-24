@@ -24,7 +24,7 @@ import models.Card;
 import models.Deck;
 
 
-
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.inject.Singleton;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
@@ -53,30 +53,28 @@ public class ApplicationController {
     }
 
 
-    public Result getScore(){
-        return Results.json().render(deck.getScore());
-    }
-
     public Result JsonDeckPost(Context context, Board board) {
 
         // Debugging
-        System.out.print("getCardsRemaining: " + board.remaining_deck.getCardsRemaining() + "\n");
         System.out.print("Size: " + board.remaining_deck.deck.size() + "\n\n");
-     
-    
-        // Basic functionality for now
-        board.remaining_deck.drawCard();
-        board.remaining_deck.drawCard();
-        board.remaining_deck.drawCard();
-        board.remaining_deck.drawCard();
 
-        System.out.print("getCardsRemaining: " + board.remaining_deck.getCardsRemaining() + "\n");
-        System.out.print("Size: " + board.remaining_deck.deck.size() + "\n\n");
+
+        // Basic functionality for now
+        Card card1 = board.remaining_deck.drawCard();
+        // Card card2 = board.remaining_deck.drawCard();
+        // Card card3 = board.remaining_deck.drawCard();
+        // Card card4 = board.remaining_deck.drawCard();
+
+        board.remaining_deck.shuffleDeck();
+
+        // Debugging
+        System.out.print("Card 1: " + card1.getSuit());
+
+        // Debugging
+        System.out.print("\n\nSize: " + board.remaining_deck.deck.size() + "\n\n--------------------------\n\n");
 
 
         return Results.json().render(board);
-       
-      
 
     }
 }

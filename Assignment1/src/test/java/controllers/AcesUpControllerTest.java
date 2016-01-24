@@ -15,6 +15,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 import models.Deck;
 import models.Board;
+import ninja.Results;
 
 import java.util.ArrayList;
 import java.io.IOException;
@@ -38,9 +39,9 @@ public class AcesUpControllerTest extends NinjaTest {
 
     @Test
     public void testPostDeck() {
-        Deck deck = new Deck();
+        Board board = new Board();
 
-        String response = ninjaTestBrowser.postJson(URL_ACES_UP, deck);
+        String response = ninjaTestBrowser.postJson(URL_ACES_UP, board);
 
         try {
             Board resultBoard = new ObjectMapper().readValue(response, Board.class);

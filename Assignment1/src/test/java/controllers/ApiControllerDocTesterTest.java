@@ -100,6 +100,8 @@ public class ApiControllerDocTesterTest extends NinjaDocTester {
             System.out.print(card.getRank() + " " + card.getSuit() + " " + card.getColor() + "\n");
         }
         System.out.print("\n");
+
+        assertEquals(52, deck.getCardsRemaining());
     }
 
     @Test
@@ -130,31 +132,7 @@ public class ApiControllerDocTesterTest extends NinjaDocTester {
         assertNotNull(game.columns);
     }
 
-    @Test // Test starting game score
-    public void testInitialGameScore(){
-        Deck deck = new Deck();
+    
 
-        assertEquals(0, deck.getScore());
-    }
-
-    @Test // Test game scores after drawing all cards in deck
-    public void testGameScores(){
-        Deck deck = new Deck();
-
-        deck.shuffleDeck();
-
-        for(int i = 0; i < deck.getSize(); i++){
-            assertEquals(i, deck.getScore());
-            deck.drawCard();
-        }
-    }
-
-    @Test
-    public void testInitialGetScoreRoute(){
-        Response response = makeRequest(
-                Request.GET().url(
-                        testServerUrl().path("/getScore")));
-
-        assertThat(response.payload, containsString("0"));
-    }
+   
 }
