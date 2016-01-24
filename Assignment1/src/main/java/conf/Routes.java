@@ -34,9 +34,6 @@ public class Routes implements ApplicationRoutes {
         router.POST().route("/deck.json").with(ApplicationController.class, "JsonDeckPost");
 
 
-        router.GET().route("/getScore").with(ApplicationController.class, "getScore");
-
-
         ///////////////////////////////////////////////////////////////////////
         // Assets (pictures / javascript)
         ///////////////////////////////////////////////////////////////////////    

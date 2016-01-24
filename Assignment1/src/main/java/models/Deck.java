@@ -3,7 +3,7 @@ package models;
 import java.util.ArrayList;
 import models.Card;
 import java.io.Serializable;
-
+import java.util.Collections;
 
 /**
  * Created by nic on 1/20/16.
@@ -80,19 +80,8 @@ public class Deck implements Serializable {
         return deck.size();
     }
 
-    // Returns current score
-    public int getScore(){ return (NUM_CARDS - 1) - getCardsRemaining(); }
-
-    public int getSize(){ return NUM_CARDS; }
 
     public void shuffleDeck() {
-        int deckIndex = getCardsRemaining() - 1;
-        
-        for(int i=0; i<=deckIndex; i++) {
-            int r = i + (int) (Math.random() * (52-i));
-            Card temp = deck.get(r);
-            deck.add(r, deck.get(i));
-            deck.add(i, temp);
-        }
+        Collections.shuffle(deck);
     }
 }
