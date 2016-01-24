@@ -111,6 +111,31 @@
     board = {};
 
 
+
+    /*****************************************************************************
+    *        Name: updateBoard
+    *      Inputs: Board board
+    *     Outputs: 
+    * Description: Renders the HTML to display the updated board
+    *              
+    *****************************************************************************/
+    function updateBoard(board) {
+        $(".columnOfCards").each(function(i) {
+            // Get the current element
+            $this = $(this);
+
+            for (j = 0; j < 14; j++) {
+                // Set $card to current board position
+                $card = board.columns[i][j];
+
+                if ($card != null) {
+                    $this.find("td.l" + j).html($card.rank + "\n" + $card.suit);
+                }
+            }
+        });
+    }
+
+
     /*****************************************************************************
     *        Name: display
     *      Inputs: Card[] cards
@@ -174,9 +199,13 @@
         })
         .done(function(result) {
             board = result
+
+            // Render the updated board
+            console.log(board.columns);
+            updateBoard(board);
             
             // Debugging
-            console.log(board.remaining_deck);
+            console.log(board);
             console.log("___________________")
         })
         .fail(function(result) {
