@@ -31,17 +31,34 @@ public class Board {
         }
     }
 
-    /* TODO
-    public void discardSameSuit(Card selectedCard){
-        // Scan columns for card of same suit but lower rank
-        boolean canDiscard = false;
-        for(int colIdx = 0; colIdx < 4; colIdx++){
-            for(int deckIdx = 0; deckIdx < columns[colIdx]._get(deckIdx); deckIdx++){
+    // Tests if selected card can be removed from columns
+    // Returns true if card discarded, false if illegal move
+    // TODO: adjust to work with controller later
+    public boolean discardSelectedCard(Card selectedCard){
+        // For each column
+        for(int i = 0; i < 4; i++){
+            Deck column = columns.get(i);
 
+            // For each card in column
+            for(int j = 0; j < column.getCardsRemaining(); j++){
+                Card currentCard = column._get(j);
+
+                // If not same card as selectedCard
+                if(!Card.equals(currentCard, selectedCard)){
+                    // Check if card suit same as selectedCard AND card val > selectedCard
+                    boolean sameSuit = currentCard.getSuit().equals(selectedCard.getSuit());
+                    boolean higherRank = currentCard.getValue() > selectedCard.getValue();
+                    if(sameSuit && higherRank){
+                        // TODO: Remove card
+                        return true;
+                    }
+                }
             }
         }
 
-    }*/
+        // Requested move was illegal
+        return false;
+    }
 
     // DEBUG
     public Card _get(String arg, int idx){

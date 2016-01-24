@@ -44,7 +44,6 @@ public class BoardTest extends NinjaDocTester {
         assertNotNull(game.columns);
     }
 
-
     @Test
     public void testDealFour() {
         Board game = new Board();
@@ -58,5 +57,14 @@ public class BoardTest extends NinjaDocTester {
             // Ensure column has 1 card
             assertTrue(column.deck.size() == 1);
         }
+    }
+
+    @Test
+    public void testCanDiscardSameSuit(){
+        Board game = new Board();
+        game.dealFour();
+
+        // TODO: expand test
+        game.discardSelectedCard(game.remaining_deck.drawCard());
     }
 }

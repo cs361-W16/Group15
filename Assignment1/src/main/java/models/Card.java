@@ -31,4 +31,12 @@ public class Card {
     public String getColor(){
         return this.color;
     }
+
+    public static boolean equals(Card a, Card b){
+        if(a.getValue() == b.getValue() && a.getSuit().equals(b.getSuit())){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
