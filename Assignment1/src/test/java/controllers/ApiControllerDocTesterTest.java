@@ -139,4 +139,4 @@ public class ApiControllerDocTesterTest extends NinjaDocTester {
         game.dealFour();
         game.printColumns();
     }
-
+}

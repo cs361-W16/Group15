@@ -85,10 +85,12 @@ public class Deck implements Serializable {
         int deckIndex = getCardsRemaining() - 1;
         
         for(int i=0; i<=deckIndex; i++) {
+
             int r = i + (int) (Math.random() * (52-i));
+
             Card temp = deck.get(r);
-            deck.add(r, deck.get(i));
-            deck.add(i, temp);
+            deck.set(r, deck.get(i));
+            deck.set(i, temp);
         }
     }
 }
