@@ -12,7 +12,7 @@ import java.util.Collections;
 public class Deck implements Serializable {
 
     private static final int NUM_CARDS = 52;
-    public ArrayList<Card> deck = new ArrayList<Card>(NUM_CARDS);
+    public ArrayList<Card> deck;
     private int top = 1;
 
     String[] ranks = {"Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"};
@@ -21,8 +21,9 @@ public class Deck implements Serializable {
     // Full deck
     public Deck(){
         // Setup deck with 52 cards
-        int suitsIdx = 0;
+        this.deck = new ArrayList<Card>(NUM_CARDS);
 
+        int suitsIdx = 0;
         for(int i = 0; i < NUM_CARDS; i++){
             if(i != 0 && i % 13 == 0){
                 suitsIdx++;
@@ -45,12 +46,14 @@ public class Deck implements Serializable {
     // Empty deck
     public Deck(String arg){
         if (arg.equals("empty")) {
-            this.top = 0;
+            this.deck = new ArrayList<Card>(1);
         }
     }
 
     // Copy constructor
     public Deck(Deck input){
+        this.deck = new ArrayList<Card>(NUM_CARDS);
+
         // Arraylist deep copy, since Java wants to copy references by default
         for(int i = 0; i < 52; i++){
             if(input.deck.get(i) != null){
@@ -62,24 +65,15 @@ public class Deck implements Serializable {
 
     // Pop card off deck
     public Card drawCard(){
-        int deckIndex = deck.size() - 1;
-
-        // Get the top card
-        Card card = deck.get(deckIndex);
-
-        deck.remove(deckIndex);
-        
-        return card;
-
+        if(deck.size() > 0){
+            return deck.remove(deck.size() - 1);
+        }else{
+            return null;
+        }
     }
 
-    public void AddtoDeck(Card card) {
-        int deckIndex = getCardsRemaining() - 1;
-
-        if(top < deckIndex) {
-            deck.add(top - 1, card);
-            top++;
-        }
+    public void addToDeck(Card card) {
+        deck.add(card);
     }
 
     public Card GetTop(){
@@ -95,8 +89,11 @@ public class Deck implements Serializable {
 
     // Returns number of cards left in deck
     public int getCardsRemaining() {
-        
         return deck.size();
+    }
+
+    public ArrayList<Card> getCurrent(){
+        return deck;
     }
 
 
@@ -104,8 +101,24 @@ public class Deck implements Serializable {
         Collections.shuffle(deck);
     }
 
+    public int getIndex(){
+        return deck.size() - 1;
+    }
+
     // DEBUG
     public Card _get(int idx){
-        return deck.get(idx);
+        if(deck.get(idx) != null){
+            return deck.get(idx);
+        }else{
+            return null;
+        }
+    }
+
+    public void _printDeck(){
+        System.out.println("SIZE: " + deck.size());
+        for(int i = 0; i < deck.size(); i++){
+            Card card = deck.get(i);
+            System.out.println(card.getRank() + " - " + card.getSuit());
+        }
     }
 }
