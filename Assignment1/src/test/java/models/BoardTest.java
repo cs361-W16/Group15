@@ -14,8 +14,7 @@
  * limitations under the License.
  */
 
-package controllers;
-
+package models;
 
 import models.Card;
 import org.junit.Test;
@@ -32,19 +31,32 @@ import models.Board;
 
 import java.util.ArrayList;
 
-public class ApiControllerDocTesterTest extends NinjaDocTester {
-    
-    String URL_INDEX = "/";
-    String URL_ACES_UP = "/AcesUp";
-    
+public class BoardTest extends NinjaDocTester {
     @Test
-    public void testGetIndex() {
+    public void testBoardDeck() {
+        Board Game = new Board();
+        assertNotNull(Game.remaining_deck);
+    }
 
-        Response response = makeRequest(
-                Request.GET().url(
-                        testServerUrl().path(URL_INDEX)));
+    @Test
+    public void testBoardColumns() {
+        Board game = new Board();
+        assertNotNull(game.columns);
+    }
 
-        assertThat(response.payload, containsString("Hello World!"));
-        assertThat(response.payload, containsString("BAM!"));
+
+    @Test
+    public void testDealFour() {
+        Board game = new Board();
+
+        game.dealFour();
+
+        // For each column
+        for(int i = 0; i < game.columns.size(); i++){
+            Deck column = game.columns.get(i);
+
+            // Ensure column has 1 card
+            assertTrue(column.deck.size() == 1);
+        }
     }
 }
