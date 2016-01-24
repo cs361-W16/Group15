@@ -112,10 +112,10 @@ public class ApiControllerDocTesterTest extends NinjaDocTester {
 
         // Calculate similarity
         double similarity = ((double)matching) / 52.0;
-        System.out.println("Similarity: " + matching + " - Total: " + 52);
+        System.out.println("Matching: " + matching + " - Total: " + 52);
 
-        // Assert that at least 85% of the deck is unique
-        assertTrue(similarity >= 0.15);
+        // Assert that the shuffled deck differs from the original by at least 85%
+        assertTrue(similarity >= 0.15 == false);
     }
 
     @Test
