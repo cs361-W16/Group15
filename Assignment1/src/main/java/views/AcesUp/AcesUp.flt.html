@@ -167,12 +167,13 @@
         $.ajax({
             url: "deck.json",
             method: "POST",
-            data: board.deck
+            data: board
         })
         .done(function(result) {
             // Debugging
             console.log(result);
-            deck = result.deck
+            board = result
+            console.log(board);
         })
         .fail(function(result) {
             // Debugging

@@ -4,26 +4,26 @@ package models;
  * Created by Daniel on 1/22/2016.
  */
 public class Board {
-    public Deck[] Columns;
-    public Deck AcesUpDeck;
-    public Deck DiscardPile;
+    public Deck[] columns;
+    public Deck remaining_deck;
+    public Deck discard_pile;
 
     public Board() {
-        Columns = new Deck[4];
+        columns = new Deck[4];
         for(int i=0; i<4; i++) {
-            Columns[i] = new Deck(14);
+            columns[i] = new Deck(14);
         }
-        AcesUpDeck = new Deck();
+        remaining_deck = new Deck();
     }
 
     public void DealFour() {
         for(int i=0; i<4; i++) {
-            Columns[i].AddtoDeck(AcesUpDeck.drawCard());
+            columns[i].AddtoDeck(remaining_deck.drawCard());
         }
     }
 
     public Deck[] getColumns() {
-        return Columns;
+        return columns;
     }
 
 }

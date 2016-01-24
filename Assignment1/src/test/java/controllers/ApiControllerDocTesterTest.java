@@ -114,13 +114,13 @@ public class ApiControllerDocTesterTest extends NinjaDocTester {
     @Test
     public void testBoardDeck() {
         Board Game = new Board();
-        assertNotNull(Game.AcesUpDeck);
+        assertNotNull(Game.remaining_deck);
     }
 
     @Test
     public void testBoardColumns() {
         Board game = new Board();
-        assertNotNull(game.Columns);
+        assertNotNull(game.columns);
     }
 
 

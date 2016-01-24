@@ -52,7 +52,7 @@ public class ApplicationController {
         return Results.json().render(deck.deck);
     }
 
-    public Result JsonDeckPost(Context context, Deck deck) {
+    public Result JsonDeckPost(Context context, Board board) {
 
     
         // Basic functionality for now
@@ -62,7 +62,7 @@ public class ApplicationController {
         //     dealt_cards[i] = deck.drawCard();
         // }
 
-        return Results.json().render(deck);
+        return Results.json().render(board);
        
       
 
