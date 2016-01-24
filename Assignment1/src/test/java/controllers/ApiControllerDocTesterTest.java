@@ -133,5 +133,8 @@ public class ApiControllerDocTesterTest extends NinjaDocTester {
         Board game = new Board();
         game.dealFour();
         game.printColumns();
+
+        assertEquals(48, game.remaining_deck.deck.size());
     }
+
 }
