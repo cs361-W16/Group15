@@ -81,7 +81,7 @@ public class Deck implements Serializable {
     }
 
     // Returns current score
-    public int getScore(){ return (NUM_CARDS - 1) - deckIndex; }
+    public int getScore(){ return (NUM_CARDS - 1) - getCardsRemaining(); }
 
     public int getSize(){ return NUM_CARDS; }
 
