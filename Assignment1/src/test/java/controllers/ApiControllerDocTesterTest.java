@@ -157,4 +157,12 @@ public class ApiControllerDocTesterTest extends NinjaDocTester {
 
         assertThat(response.payload, containsString("0"));
     }
+
+    @Test
+    public void testColumns() {
+        Board game = new Board();
+        game.dealFour();
+        game.printColumns();
+    }
+
 }
