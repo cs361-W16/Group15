@@ -25,9 +25,8 @@ import org.doctester.testbrowser.Request;
 import org.doctester.testbrowser.Response;
 
 import static org.hamcrest.CoreMatchers.containsString;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.*;
+
 import models.Deck;
 import models.Board;
 
@@ -94,16 +93,37 @@ public class ApiControllerDocTesterTest extends NinjaDocTester {
     @Test
     public void testDeckShuffle() {
         Deck deck = new Deck();
+        Deck orig = new Deck(deck); // Copy first deck
         deck.shuffleDeck();
 
-        assertEquals(52, deck.getCardsRemaining());
+        // Compare original and shuffled deck cards
+        int matching = 0;
+        for(int i = 0; i < 52; i++) {
+            Card shuffled = deck._get(i);
+            Card original = orig._get(i);
+
+            System.out.println(shuffled.getValue() + " - " + original.getValue());
+
+            // If matching
+            if(original.getValue() == shuffled.getValue() && original.getSuit().equals(shuffled.getSuit())){
+                matching++;
+            }
+        }
+
+        // Calculate similarity
+        double similarity = ((double)matching) / 52.0;
+        System.out.println("Matching: " + matching + " - Total: " + 52);
+
+        // Assert that the shuffled deck differs from the original by at least 85%
+        assertTrue(similarity >= 0.15 == false);
     }
 
     @Test
     public void testDrawCard() {
         Deck deck = new Deck();
         Card card = deck.drawCard();
-        System.out.print(card.getValue());
+
+        assertNotNull(card);
     }
 
     @Test
@@ -129,12 +149,19 @@ public class ApiControllerDocTesterTest extends NinjaDocTester {
 
 
     @Test
-    public void testColumns() {
+    public void testDealFour() {
         Board game = new Board();
-        game.dealFour();
-        game.printColumns();
 
-        assertEquals(48, game.remaining_deck.deck.size());
+        game.dealFour();
+
+        // For each column
+        for(int i = 0; i < game.columns.size(); i++){
+            Deck column = game.columns.get(i);
+
+            // Ensure column has 1 card
+            assertTrue(column.deck.size() == 1);
+        }
+
     }
 
 }
