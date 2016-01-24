@@ -28,7 +28,7 @@ import com.google.inject.Singleton;
 
 @Singleton
 public class ApplicationController {
-
+    public Deck deck = new Deck();
     public Board AcesUp;
 
     public Result index() {
@@ -46,5 +46,7 @@ public class ApplicationController {
         return Results.json().render(AcesUp.getColumns());
     }
 
-
+    public Result getScore(){
+        return Results.json().render(deck.getScore());
+    }
 }
