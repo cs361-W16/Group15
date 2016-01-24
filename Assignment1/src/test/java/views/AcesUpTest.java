@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package controllers;
+package views;
 
 
 import models.Card;
@@ -32,19 +32,26 @@ import models.Board;
 
 import java.util.ArrayList;
 
-public class ApiControllerDocTesterTest extends NinjaDocTester {
-    
+public class AcesUpTest extends NinjaDocTester {
     String URL_INDEX = "/";
     String URL_ACES_UP = "/AcesUp";
-    
-    @Test
-    public void testGetIndex() {
 
+    @Test
+    public void testAcesUp() {
+        Response response = makeRequest(
+                Request.GET().url(
+                        testServerUrl().path(URL_ACES_UP)));
+
+        assertThat(response.payload, containsString("Aces Up"));
+        assertThat(response.payload, containsString("columnOfCards"));
+    }
+
+    @Test
+    public void testPlayButton() {
         Response response = makeRequest(
                 Request.GET().url(
                         testServerUrl().path(URL_INDEX)));
 
-        assertThat(response.payload, containsString("Hello World!"));
-        assertThat(response.payload, containsString("BAM!"));
+        assertThat(response.payload, containsString("playButton"));
     }
 }
