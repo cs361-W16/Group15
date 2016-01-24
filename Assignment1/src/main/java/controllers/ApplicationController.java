@@ -61,6 +61,9 @@ public class ApplicationController {
     
         // Basic functionality for now
         board.remaining_deck.drawCard();
+        board.remaining_deck.drawCard();
+        board.remaining_deck.drawCard();
+        board.remaining_deck.drawCard();
 
         System.out.print("getCardsRemaining: " + board.remaining_deck.getCardsRemaining() + "\n");
         System.out.print("Size: " + board.remaining_deck.deck.size() + "\n\n");

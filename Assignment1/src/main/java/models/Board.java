@@ -1,12 +1,16 @@
 package models;
 
+import models.Deck;
+import java.util.ArrayList;
+import models.Card;
+
 /**
  * Created by Daniel on 1/22/2016.
  */
 public class Board {
-    public Deck[] columns;
-    public Deck remaining_deck;
-    public Deck discard_pile;
+    public ArrayList<Card> columns = new ArrayList<Card>(4);
+    public ArrayList<Card> remaining_deck = new ArrayList<Card>();
+    public ArrayList<Card> discard_pile = new ArrayList<Card>();
 
     public Board() {
         columns = new Deck[4];

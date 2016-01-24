@@ -168,9 +168,12 @@
             url: "deck.json",
             method: "POST",
             data: JSON.stringify(board),
+            cache: false
         })
         .done(function(result) {
             board = result
+            
+            // Debugging
             console.log(board.remaining_deck);
             console.log("___________________")
         })
