@@ -56,23 +56,16 @@ public class ApplicationController {
     public Result JsonDeckPost(Context context, Board board) {
 
         // Debugging
-        System.out.print("Size: " + board.remaining_deck.deck.size() + "\n\n");
-
-
-        board.remaining_deck.shuffleDeck();
+        System.out.print("Received Size: " + board.remaining_deck.deck.size() + "\n\n");
 
         // Basic functionality for now
-        Card card1 = board.remaining_deck.drawCard();
-        // Card card2 = board.remaining_deck.drawCard();
-        // Card card3 = board.remaining_deck.drawCard();
-        // Card card4 = board.remaining_deck.drawCard();
+        board.dealFour();
+
+        // board.printColumns();
 
 
         // Debugging
-        System.out.print("Card 1: " + card1.getRank() + " | " + card1.getSuit());
-
-        // Debugging
-        System.out.print("\n\nSize: " + board.remaining_deck.deck.size() + "\n\n--------------------------\n\n");
+        System.out.print("\n\nSending Size: " + board.remaining_deck.deck.size() + "\n\n--------------------------\n\n");
 
 
         return Results.json().render(board);

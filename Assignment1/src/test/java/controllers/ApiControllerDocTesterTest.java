@@ -161,5 +161,7 @@ public class ApiControllerDocTesterTest extends NinjaDocTester {
             // Ensure column has 1 card
             assertTrue(column.deck.size() == 1);
         }
+
     }
+
 }
