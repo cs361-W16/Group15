@@ -10,10 +10,8 @@ public class Board {
 
     public Board() {
         columns = new Deck[4];
-        for(int i=0; i<4; i++) {
-            columns[i] = new Deck(14);
-        }
         remaining_deck = new Deck();
+        discard_pile = new Deck();
     }
 
     public void DealFour() {

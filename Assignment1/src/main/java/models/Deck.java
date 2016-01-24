@@ -12,7 +12,6 @@ public class Deck implements Serializable {
 
     private static final int NUM_CARDS = 52;
     public Card[] deck = new Card[NUM_CARDS];
-    private int deckIndex = 51;
     private int top = 1;
 
     String[] ranks = {"Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"};
@@ -41,19 +40,16 @@ public class Deck implements Serializable {
         }
     }
 
-    public Deck(int i) {
-        deck = new Card[i];
-        for(int j=0; j<14; j++) {
-            deck[j] = new Card(0,"N","N","N");
-        }
-        deckIndex = i;
-    }
-
     // Pop card off deck
     public Card drawCard(){
+        int deckIndex = getCardsRemaining() - 1;
+        // Find the first card that isn't null (aka top card)
         if(deckIndex >= 0){
+            while (deck[deckIndex] == null) {
+                deckIndex--;
+            }
             Card card = deck[deckIndex];
-            deckIndex--; // "Pop" card off
+            deck[deckIndex] = null; // "Pop" card off
 
             return card;
         }else{
@@ -62,6 +58,8 @@ public class Deck implements Serializable {
     }
 
     public void AddtoDeck(Card card) {
+        int deckIndex = getCardsRemaining() - 1;
+
         if(top < deckIndex) {
             deck[top - 1] = card;
             top++;
@@ -81,10 +79,19 @@ public class Deck implements Serializable {
 
     // Returns number of cards left in deck
     public int getCardsRemaining() {
-        return deckIndex + 1;
+        int count = 0;
+
+        for(int i = (NUM_CARDS - 1); i >= 0; i--){
+            if(deck[i] != null){
+                count++;
+            }
+        }
+        return count;
     }
 
     public void shuffleDeck() {
+        int deckIndex = getCardsRemaining() - 1;
+        
         for(int i=0; i<=deckIndex; i++) {
             int r = i + (int) (Math.random() * (52-i));
             Card temp = deck[r];

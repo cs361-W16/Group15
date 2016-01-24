@@ -99,7 +99,8 @@ public class ApiControllerDocTesterTest extends NinjaDocTester {
     public void testDrawCard() {
         Deck deck = new Deck();
         deck.drawCard();
-        assertEquals(51, deck.getCardsRemaining()); 
+        deck.drawCard();
+        assertEquals(50, deck.getCardsRemaining()); 
     }
 
     @Test

@@ -94,6 +94,7 @@
 
 
 
+
 <script>
 
     /*****************************************************************************
@@ -105,9 +106,7 @@
     *****************************************************************************/
 
     // Global variables to track state
-    var board = {};
-    board.deck = [];
-    board.discard_pile = []
+    board = {};
 
 
     /*****************************************************************************
@@ -126,13 +125,13 @@
 
 
     /*****************************************************************************
-    *        Name: getInitialDeck
+    *        Name: getInitialBoard
     *      Inputs: 
     *     Outputs: 
-    * Description: AJAX request to the controller to generate a deck and store in
+    * Description: AJAX request to the controller to generate a board and store in
     *              the view
     *****************************************************************************/
-    function getInitialDeck() {
+    function getInitialBoard() {
         
         $.ajax({
             url: "deck.json",
@@ -143,7 +142,7 @@
                 console.log(result);
 
                 // Store deck state in global variable
-                board.deck = result;
+                board = result;
         })
         .fail(function(result) {
             // Debugging
@@ -162,30 +161,27 @@
     *****************************************************************************/
     function deal() {
 
-        console.log(board.deck);
-
         $.ajax({
             url: "deck.json",
             method: "POST",
             data: board
         })
         .done(function(result) {
-            // Debugging
-            console.log(result);
             board = result
-            console.log(board);
+            console.log("Cards: " + board.remaining_deck.cardsRemaining);
         })
         .fail(function(result) {
             // Debugging
             console.log(result);
-        })
+        });
+
     }
 
 
 
 
     // Store deck
-    getInitialDeck();
+    getInitialBoard();
 
 </script>
 

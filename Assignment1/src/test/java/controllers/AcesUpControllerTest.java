@@ -28,8 +28,8 @@ public class AcesUpControllerTest extends NinjaTest {
         String response = ninjaTestBrowser.makeJsonRequest(URL_ACES_UP);
 
         try {
-            Deck resultDeck = new ObjectMapper().readValue(response, Deck.class);
-            assertEquals(52, resultDeck.getCardsRemaining());
+            Board resultBoard = new ObjectMapper().readValue(response, Board.class);
+            assertEquals(52, resultBoard.remaining_deck.getCardsRemaining());
         }
         catch (IOException e) {
             e.printStackTrace();

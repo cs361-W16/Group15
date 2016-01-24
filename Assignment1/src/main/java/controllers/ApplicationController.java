@@ -47,20 +47,22 @@ public class ApplicationController {
 
 
     public Result JsonDeckGet() {
-        Deck deck = new Deck();
+        Board board = new Board();
 
-        return Results.json().render(deck.deck);
+        return Results.json().render(board);
     }
 
     public Result JsonDeckPost(Context context, Board board) {
 
+        // Debugging
+        System.out.print(board.remaining_deck.getCardsRemaining() + "\n");
+
     
         // Basic functionality for now
-        // Card[] dealt_cards = new Card[4];
+        board.remaining_deck.drawCard();
 
-        // for (int i = 0; i < 4; i++) {
-        //     dealt_cards[i] = deck.drawCard();
-        // }
+        System.out.print(board.remaining_deck.getCardsRemaining() + "\n");
+
 
         return Results.json().render(board);
        
