@@ -64,8 +64,9 @@ public class BoardTest extends NinjaDocTester {
         Board game = new Board();
         game.dealFour();
 
-        // TODO: expand test
-        game.discardSelectedCard(game.remaining_deck.drawCard());
+        boolean val = game.discardSelectedCard(game.remaining_deck.drawCard());
+
+        assertNotNull(val);
     }
 
     @Test

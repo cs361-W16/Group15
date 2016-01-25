@@ -21,7 +21,6 @@ import java.util.ArrayList;
 import java.io.IOException;
 
 public class AcesUpControllerTest extends NinjaTest {
-
     String URL_ACES_UP = "http://localhost:1024/deck.json";
 
     @Test

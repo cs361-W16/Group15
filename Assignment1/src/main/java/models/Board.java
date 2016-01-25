@@ -32,12 +32,14 @@ public class Board {
     }
 
     // Tests if selected card can be removed from columns
-    // Returns true if card discarded, false if illegal move
-    // TODO: adjust to work with controller later
+    // Returns true if discarded, else false (likely illegal move)
     public boolean discardSelectedCard(Card selectedCard){
+        boolean canDiscard = false;
+
         // For each column
         for(int i = 0; i < 4; i++){
             Deck column = columns.get(i);
+
             // For each card in column
             for(int j = 0; j < column.getCardsRemaining(); j++){
                 Card currentCard = column._get(j);
@@ -47,16 +49,50 @@ public class Board {
                     // Check if card suit same as selectedCard AND card val > selectedCard
                     boolean sameSuit = currentCard.getSuit().equals(selectedCard.getSuit());
                     boolean higherRank = currentCard.getValue() > selectedCard.getValue();
+
+                    // If the above is true, it is okay to remove selectedCard
                     if(sameSuit && higherRank){
-                        // TODO: Remove card
-                        return true;
+                        canDiscard = true;
                     }
                 }
             }
         }
 
-        // Requested move was illegal
-        return false;
+        if(canDiscard){
+            // Search for selected cards column index, and index within that column
+            int selectedColIdx = -1;
+            int selectedDeckIdx = -1;
+
+            // For each column
+            for(int i = 0; i < 4; i++){
+                Deck column = columns.get(i);
+
+                // For each card in column
+                for(int j = 0; j < column.getCardsRemaining(); j++){
+                    Card currentCard = column._get(j);
+
+                    // If same card as selectedCard
+                    if(Card.equals(currentCard, selectedCard)){
+                        // Record indices
+                        selectedColIdx = i;
+                        selectedDeckIdx = j;
+                    }
+                }
+            }
+
+            if(selectedColIdx == -1 || selectedDeckIdx == -1){
+                System.out.println("ERROR");
+
+                return false;
+            }else{
+                // Pop card off column into discarded
+                discard_pile.addToDeck(columns.get(selectedColIdx).getAt(selectedDeckIdx));
+
+                return true;
+            }
+        }else{
+            return false;
+        }
     }
 
     public void printColumns() {
