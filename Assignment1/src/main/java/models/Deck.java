@@ -19,23 +19,23 @@ public class Deck implements Serializable {
     String[] suits = {"Clubs", "Diamonds", "Hearts", "Spades"};
 
     // Full deck
-    public Deck(){
+    public Deck() {
         // Setup deck with 52 cards
         this.deck = new ArrayList<Card>(NUM_CARDS);
 
         int suitsIdx = 0;
-        for(int i = 0; i < NUM_CARDS; i++){
-            if(i != 0 && i % 13 == 0){
+        for (int i = 0; i < NUM_CARDS; i++) {
+            if (i != 0 && i % 13 == 0) {
                 suitsIdx++;
             }
 
             // Decide color
             String newColor;
-            if(suits[suitsIdx].equals("Diamonds")){
+            if (suits[suitsIdx].equals("Diamonds")) {
                 newColor = "Red";
-            }else if(suits[suitsIdx].equals("Hearts")){
+            } else if (suits[suitsIdx].equals("Hearts")) {
                 newColor = "Red";
-            }else{
+            } else {
                 newColor = "Black";
             }
 
@@ -44,7 +44,7 @@ public class Deck implements Serializable {
     }
 
     // Empty deck
-    public Deck(String arg){
+    public Deck(String arg) {
         if (arg.equals("empty")) {
             this.deck = new ArrayList<Card>(1);
         }
@@ -61,12 +61,12 @@ public class Deck implements Serializable {
     }
 
     // Copy constructor
-    public Deck(Deck input){
+    public Deck(Deck input) {
         this.deck = new ArrayList<Card>(NUM_CARDS);
 
         // Arraylist deep copy, since Java wants to copy references by default
-        for(int i = 0; i < 52; i++){
-            if(input.deck.get(i) != null){
+        for (int i = 0; i < 52; i++) {
+            if (input.deck.get(i) != null) {
                 this.deck.add(input.deck.get(i));
             }
         }
@@ -74,10 +74,10 @@ public class Deck implements Serializable {
     }
 
     // Pop card off deck
-    public Card drawCard(){
-        if(deck.size() > 0){
+    public Card drawCard() {
+        if (deck.size() > 0) {
             return deck.remove(deck.size() - 1);
-        }else{
+        } else {
             return null;
         }
     }
@@ -86,16 +86,15 @@ public class Deck implements Serializable {
         deck.add(card);
     }
 
-    public Card GetTop(){
-        if(deck.size() > 0) {
-            return deck.get(deck.size()-1);
-        }
-        else {
+    public Card GetTop() {
+        if (deck.size() > 0) {
+            return deck.get(deck.size() - 1);
+        } else {
             return null;
         }
     }
 
-    public Card getAt(int idx){
+    public Card getAt(int idx) {
         return deck.remove(idx);
     }
 
@@ -104,28 +103,17 @@ public class Deck implements Serializable {
         return deck.size();
     }
 
-    public ArrayList<Card> getCurrent(){
-        return deck;
-    }
-
     public void shuffleDeck() {
         Collections.shuffle(deck);
     }
 
     // DEBUG
-    public Card _get(int idx){
-        if(deck.get(idx) != null){
+    public Card _get(int idx) {
+        if (deck.get(idx) != null) {
             return deck.get(idx);
-        }else{
+        } else {
             return null;
         }
     }
 
-    public void _printDeck(){
-        System.out.println("SIZE: " + deck.size());
-        for(int i = 0; i < deck.size(); i++){
-            Card card = deck.get(i);
-            System.out.println(card.getRank() + " - " + card.getSuit());
-        }
-    }
 }

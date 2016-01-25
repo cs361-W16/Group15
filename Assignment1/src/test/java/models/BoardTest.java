@@ -79,4 +79,16 @@ public class BoardTest extends NinjaDocTester {
         Deck column0 = game.columns.get(0);
         assertTrue(column0.deck.size() == 2);
     }
+
+    @Test
+    public void testMoveCardEmptyDeck() {
+        Board game = new Board();
+        game.dealFour();
+        game.dealFour();
+        game.printColumns();
+        game.moveCard(1,0);
+        game.moveCard(2,1);
+        Deck column2 = game.columns.get(2);
+        assertTrue(column2.deck.size() == 1);
+    }
 }

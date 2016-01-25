@@ -109,4 +109,13 @@ public class DeckTest extends NinjaDocTester {
 
         assertNotNull(card);
     }
+
+    @Test
+    public void testNullCards() {
+        Deck deck = new Deck("empty");
+        Card card1 = deck.GetTop();
+        Card card2 = deck.drawCard();
+        assertTrue(card1 == null);
+        assertTrue(card2 == null);
+    }
 }
