@@ -61,7 +61,7 @@ public class ApplicationController {
         // Basic functionality for now
         board.dealFour();
 
-        // board.printColumns();
+        board.printColumns();
 
 
         // Debugging
