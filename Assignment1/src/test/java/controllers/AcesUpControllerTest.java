@@ -21,11 +21,11 @@ import java.util.ArrayList;
 import java.io.IOException;
 
 public class AcesUpControllerTest extends NinjaTest {
-    String URL_ACES_UP = "http://localhost:1024/deck.json";
+    String URL_ACES_UP = "http://localhost:1024/";
 
     @Test
     public void testGetDeck() {
-        String response = ninjaTestBrowser.makeJsonRequest(URL_ACES_UP);
+        String response = ninjaTestBrowser.makeJsonRequest(URL_ACES_UP + "/deck.json");
 
         try {
             Board resultBoard = new ObjectMapper().readValue(response, Board.class);
@@ -40,7 +40,7 @@ public class AcesUpControllerTest extends NinjaTest {
     public void testPostDeck() {
         Board board = new Board();
 
-        String response = ninjaTestBrowser.postJson(URL_ACES_UP, board);
+        String response = ninjaTestBrowser.postJson(URL_ACES_UP + "/deck.json", board);
 
         try {
             Board resultBoard = new ObjectMapper().readValue(response, Board.class);
@@ -49,14 +49,17 @@ public class AcesUpControllerTest extends NinjaTest {
         catch (IOException e) {
             e.printStackTrace();
         }
+    }
 
+    @Test 
+    public void testDiscard() {
+        Board board = new Board();
 
-        // Repeat to see if it calculates correctly
-        response = ninjaTestBrowser.postJson(URL_ACES_UP, board);
+        String response = ninjaTestBrowser.postJson(URL_ACES_UP + "/discard.json", board);
 
         try {
             Board resultBoard = new ObjectMapper().readValue(response, Board.class);
-            assertEquals(44, resultBoard.remaining_deck.getCardsRemaining());
+            
         }
         catch (IOException e) {
             e.printStackTrace();
