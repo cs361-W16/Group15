@@ -31,6 +31,35 @@ public class Board {
         }
     }
 
+    public void printColumns() {
+        for(int i=0; i<4; i++) {
+            System.out.println("Column " + i);
+            Deck current = columns.get(i);
+            for(int j=0;j<current.sizeDeck();j++) {
+                Card currentCard = current.getIndex(j);
+                System.out.println(currentCard.getSuit() + " - " + currentCard.getValue());
+            }
+        }
+    }
+
+    public void moveCard(int source, int destination) {
+        Deck destinationDeck = columns.get(destination);
+        Deck sourceDeck = columns.get(source);
+        if( destinationDeck.sizeDeck() == 0 ) {
+            Card sourceCard = sourceDeck.drawCard();
+            destinationDeck.addToDeck(sourceCard);
+        }
+        else {
+            Card topDestination = destinationDeck.GetTop();
+            Card topSource = sourceDeck.GetTop();
+            if( topDestination.getValue() > topSource.getValue() && topDestination.getSuit() == topSource.getSuit() ) {
+                Card sourceCard = sourceDeck.drawCard();
+                destinationDeck.addToDeck(sourceCard);
+            }
+        }
+
+    }
+
     /* TODO
     public void discardSameSuit(Card selectedCard){
         // Scan columns for card of same suit but lower rank
@@ -54,17 +83,4 @@ public class Board {
         }
     }
 
-    /*public void printColumns() {
-        int j=0;
-        Card card;
-        for(int i=0;i<4;i++) {
-            System.out.print("Column " + (i+1) + ": ");
-            while(columns[i][j] != null) {
-                card = columns[i][j];
-                j++;
-                System.out.print(card.getRank() + " " + card.getSuit() + " " + card.getColor() + "\n");
-            }
-            j=0;
-        }
-    }*/
 }

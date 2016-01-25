@@ -50,6 +50,16 @@ public class Deck implements Serializable {
         }
     }
 
+    // Return the size of column decks
+    int sizeDeck() {
+        return deck.size();
+    }
+
+    // Return the card at index
+    Card getIndex(int i) {
+        return deck.get(i);
+    }
+
     // Copy constructor
     public Deck(Deck input){
         this.deck = new ArrayList<Card>(NUM_CARDS);
@@ -77,10 +87,8 @@ public class Deck implements Serializable {
     }
 
     public Card GetTop(){
-        if(top > 0) {
-            Card card = deck.get(top);
-            top--;
-            return card;
+        if(deck.size() > 0) {
+            return deck.get(deck.size()-1);
         }
         else {
             return null;
