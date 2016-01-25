@@ -124,7 +124,8 @@ public class Board {
 
     }
 
-    // DEBUG
+    //Might come in handy later -Nic
+    /*
     public Card _get(String arg, int idx){
         if(arg.equals("remaining")){
             return this.remaining_deck._get(idx);
@@ -134,5 +135,6 @@ public class Board {
             return null;
         }
     }
+    */
 
 }
