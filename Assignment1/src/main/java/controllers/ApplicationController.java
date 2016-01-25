@@ -82,6 +82,6 @@ public class ApplicationController {
         // Debugging
         System.out.print("Sending size: " + board.remaining_deck.deck.size() + "\n\n");
 
-        return Result.json().render(board);
+        return Results.json().render(board);
     }
 }
