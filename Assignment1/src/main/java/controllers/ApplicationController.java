@@ -71,4 +71,17 @@ public class ApplicationController {
         return Results.json().render(board);
 
     }
+
+    public Result DiscardPost(Context context, Board board) {
+
+        // Debugging
+        System.out.print("Received Size: " + board.remaining_deck.deck.size() + "\n\n");
+
+        // board.discardCard();
+
+        // Debugging
+        System.out.print("Sending size: " + board.remaining_deck.deck.size() + "\n\n");
+
+        return Results.json().render(board);
+    }
 }

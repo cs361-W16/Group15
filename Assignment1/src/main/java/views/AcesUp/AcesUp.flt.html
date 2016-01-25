@@ -93,6 +93,7 @@
 <p id="cards">asdfas</p>
 
 <button id="dealButton" onclick="deal()">Deal</button>
+<button id="discardButton" onclick="discardCard()">Discard</button>
 
 
 
@@ -198,7 +199,7 @@
             cache: false
         })
         .done(function(result) {
-            board = result
+            board = result;
 
             // Render the updated board
             console.log(board.columns);
@@ -215,6 +216,33 @@
 
     }
 
+
+
+    /*****************************************************************************
+    *        Name: discardCard
+    *      Inputs: 
+    *     Outputs: 
+    * Description: AJAX request to the controller to find any removeable cards 
+    *              and move them to discard_pile
+    *****************************************************************************/
+    function discardCard() {
+
+        $.ajax({
+            url: "discard.json",
+            method: "POST",
+            data: JSON.stringify(board),
+            cache: false
+        })
+        .done(function(result) {
+            board = result;
+
+            updateBoard(board);
+        })
+        .fail(function(result) {
+            // Debugging
+            console.log(result);
+        });
+    }
 
 
 
