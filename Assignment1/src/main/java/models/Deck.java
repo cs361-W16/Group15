@@ -95,6 +95,10 @@ public class Deck implements Serializable {
         }
     }
 
+    public Card getAt(int idx){
+        return deck.remove(idx);
+    }
+
     // Returns number of cards left in deck
     public int getCardsRemaining() {
         return deck.size();
@@ -104,13 +108,8 @@ public class Deck implements Serializable {
         return deck;
     }
 
-
     public void shuffleDeck() {
         Collections.shuffle(deck);
-    }
-
-    public int getIndex(){
-        return deck.size() - 1;
     }
 
     // DEBUG

@@ -100,4 +100,13 @@ public class DeckTest extends NinjaDocTester {
         assertTrue(card.getValue() > 0 && card.getValue() < 14);
         assertTrue(card.getSuit().length() > 0); // Assert suit string not empty
     }
+
+    @Test
+    public void testGetAt(){
+        Deck deck = new Deck();
+
+        Card card = deck.getAt(0);
+
+        assertNotNull(card);
+    }
 }
